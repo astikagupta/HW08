@@ -13,12 +13,18 @@
 ##############################################################################
 
 def print_hist_old(h):
-    for c in h:
-        print c, h[c]
+	# list1=[]
+ #    for c in h:
+ #    	list1 = c
+ #    print(sorted(list1))
+	pass
 
 
 def print_hist_new(h):
-    pass
+    
+    for k,v in sorted(h.items()):
+    	print (k,v)
+   # print(sorted(h.items())) 
 
 
 ##############################################################################
@@ -26,7 +32,41 @@ def print_hist_new(h):
 ##############################################################################
 
 
+# def histogram_old(s):
+#     d = dict()
+    
+#     for c in s:
+ 
+#         if c not in d:
+#             d[c] = 1
+#         else:
+#             d[c] += 1
+#     return d
 
+def histogram_new(s):
+    d = dict()
+    
+    for c in s:
+
+        d[c] = 1 + d.get(c,0)
+
+    print_hist_new(d)
+    
+
+def get_pledge_list():
+    """ Opens pledge.txt and converts to a list, each item is a word in 
+    the order it appears in the original file. returns the list.
+    """
+    # Your code here.
+    pledge_list=[]
+    with open("pledge.txt","r") as fo:
+
+        #list1 = (list1.append(line.split()) for line in fo)
+        string1 = fo.read()
+        pledge_list = string1.replace(';',' ').replace(':',' ').replace('.',' ').replace('\n',' ').split()
+        
+
+    histogram_new(pledge_list)
 
 ##############################################################################
 ################### INSERT COMPLETED CODE FROM 11_02 ABOVE: ##################
@@ -36,7 +76,7 @@ def main():
     """ Calls print_hist_new with the appropriate arguments to print the 
     histogram of pledge.txt.
     """
-    pass
+    get_pledge_list()
 
 if __name__ == '__main__':
     main()

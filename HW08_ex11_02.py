@@ -27,7 +27,9 @@ pledge_histogram = {}
 
 def histogram_old(s):
     d = dict()
+    
     for c in s:
+ 
         if c not in d:
             d[c] = 1
         else:
@@ -35,19 +37,33 @@ def histogram_old(s):
     return d
 
 def histogram_new(s):
-    pass
+    d = dict()
+    
+    for c in s:
+
+        d[c] = 1 + d.get(c,0)
+    return d
+    
 
 def get_pledge_list():
     """ Opens pledge.txt and converts to a list, each item is a word in 
     the order it appears in the original file. returns the list.
     """
     # Your code here.
-    pass
-    #return pledge_list (uncomment this)
+    pledge_list=[]
+    with open("pledge.txt","r") as fo:
+
+        #list1 = (list1.append(line.split()) for line in fo)
+        string1 = fo.read()
+        pledge_list = string1.replace(';',' ').replace(':',' ').replace('.',' ').replace('\n',' ').split()
+        
+
+    return pledge_list
 
 ##############################################################################
 def main():  # DO NOT CHANGE BELOW
     print histogram_new(get_pledge_list())
+    
 
 if __name__ == '__main__':
     main()
